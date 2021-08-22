@@ -11,10 +11,10 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
     }
 
-    fun clickLogin(view: View) {
-        var intent = Intent(this@HomeActivity, LoginActivity::class.java)
-        startActivity(intent)
-    }
+//    fun clickLogin(view: View) {
+//        var intent = Intent(this@HomeActivity, LoginActivity::class.java)
+//        startActivity(intent)
+//    }
 
     fun clickDiary(view: View) {
         val id = intent.getStringExtra("id")

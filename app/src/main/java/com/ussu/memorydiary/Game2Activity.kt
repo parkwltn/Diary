@@ -44,7 +44,7 @@ class Game2Activity : AppCompatActivity() {
             .build()
 
         val api = retrofit.create(diaryAPI::class.java)
-        val callGetQuestionInfo = api.getAnswer(questionInfo("$id", "$date", "0", "0"))
+        val callGetQuestionInfo = api.getAnswer2(questionInfo("$id", "$date", "0", "0"))
 
         callGetQuestionInfo.enqueue(object : Callback<questionInfo> {
             override fun onResponse(call: Call<questionInfo>, response: Response<questionInfo>) {

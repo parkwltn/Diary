@@ -34,6 +34,12 @@ class Game2Activity : AppCompatActivity() {
         GameTextTextView = findViewById(R.id.textViewGameText)
         gameTextWarning = findViewById(R.id.showWarning)
 
+        var btnAnswer = findViewById<Button>(R.id.btnCheckAnswer)
+        var btnWhere = findViewById<Button>(R.id.btnSaveWhere)
+
+        btnAnswer.isVisible = true
+        btnWhere.isVisible = true
+
         //서버에서 질문, 답 가져오기
         val BASE_URL = "http://192.168.0.104:8080"
         val id = intent.getStringExtra("id")
@@ -57,9 +63,11 @@ class Game2Activity : AppCompatActivity() {
                 if (response.body() != null) {
                     var getAnswer = response.body()!!.answer
                     var btnAnswer = findViewById<Button>(R.id.btnCheckAnswer)
+                    var btnWhere = findViewById<Button>(R.id.btnSaveWhere)
 
                     if (response.body()!!.answer == "99") {
                         gameTextWarning.isVisible = true
+                        btnAnswer.isVisible = false //결과 확인 버튼 비활성화
                         var game_text = response.body()!!.game_text
                         GameTextTextView.text = "$game_text"
 
@@ -99,16 +107,19 @@ class Game2Activity : AppCompatActivity() {
                             }
                         }
                     }
-                    btnAnswer.setOnClickListener {
-                        //답 입력받기
-                        var answer = AnswerEditText.text.toString()
+                    else {
+                        btnWhere.isVisible = false //저장 버튼 비활성화
+                        btnAnswer.setOnClickListener {
+                            //답 입력받기
+                            var answer = AnswerEditText.text.toString()
 
-                        //답 비교
-                        if (answer == getAnswer) { //정답
-                            Toast.makeText(this@Game2Activity, "정답입니다!", Toast.LENGTH_LONG).show()
-                        } else {
-                            Toast.makeText(this@Game2Activity, "오답입니다! 다시 생각해보세요", Toast.LENGTH_LONG
-                            ).show()
+                            //답 비교
+                            if (answer == getAnswer) { //정답
+                                Toast.makeText(this@Game2Activity, "정답입니다!", Toast.LENGTH_LONG).show()
+                            } else {
+                                Toast.makeText(this@Game2Activity, "오답입니다! 다시 생각해보세요", Toast.LENGTH_LONG
+                                ).show()
+                            }
                         }
                     }
                 } else {

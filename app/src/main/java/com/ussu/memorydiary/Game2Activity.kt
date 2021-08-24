@@ -34,8 +34,6 @@ class Game2Activity : AppCompatActivity() {
         GameTextTextView = findViewById(R.id.textViewGameText)
         gameTextWarning = findViewById(R.id.showWarning)
 
-        GameTextTextView.text = ""
-
         //서버에서 질문, 답 가져오기
         val BASE_URL = "http://192.168.0.104:8080"
         val id = intent.getStringExtra("id")

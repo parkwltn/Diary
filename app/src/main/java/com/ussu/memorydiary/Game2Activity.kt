@@ -64,36 +64,39 @@ class Game2Activity : AppCompatActivity() {
                         GameTextTextView.text = "$game_text"
 
                         var answer = AnswerEditText.text.toString()
+                        var btnWhere = findViewById<Button>(R.id.btnSaveWhere)
 
-                        if (game_text.contains(answer)) {
-                            val BASE_URL = "http://192.168.0.104:8080"
-                            var answer = AnswerEditText.text.toString()
+                        btnWhere.setOnClickListener {
+                            if (game_text.contains(answer)) {
+                                val BASE_URL = "http://192.168.0.104:8080"
+                                var answer = AnswerEditText.text.toString()
 
-                            var gson = GsonBuilder()
-                                .setLenient()
-                                .create()
+                                var gson = GsonBuilder()
+                                    .setLenient()
+                                    .create()
 
-                            val retrofit = Retrofit.Builder()
-                                .baseUrl(BASE_URL)
-                                .addConverterFactory(GsonConverterFactory.create(gson))
-                                .build()
+                                val retrofit = Retrofit.Builder()
+                                    .baseUrl(BASE_URL)
+                                    .addConverterFactory(GsonConverterFactory.create(gson))
+                                    .build()
 
-                            val api = retrofit.create(diaryAPI::class.java)
-                            val callGetGameText = api.getGameText((gameText(answer)))
+                                val api = retrofit.create(diaryAPI::class.java)
+                                val callGetGameText = api.getGameText((gameText(answer)))
 
-                            callGetGameText.enqueue(object : Callback<gameText> {
-                                override fun onResponse(call: Call<gameText>, response: Response<gameText>) {
-                                    Toast.makeText(this@Game2Activity, "보내주신 데이터가 잘 저장되었어요!", Toast.LENGTH_LONG).show()
-                                    Log.d(ContentValues.TAG, "성공: ${response.raw()}")
-                                }
+                                callGetGameText.enqueue(object : Callback<gameText> {
+                                    override fun onResponse(call: Call<gameText>, response: Response<gameText>) {
+                                        Toast.makeText(this@Game2Activity, "보내주신 데이터가 잘 저장되었어요!", Toast.LENGTH_LONG).show()
+                                        Log.d(ContentValues.TAG, "성공: ${response.raw()}")
+                                    }
 
-                                override fun onFailure(call: Call<gameText>, t: Throwable) {
-                                    Log.d(ContentValues.TAG, "실패: $t")
-                                }
-                            })
-                        }
-                        else {
-                            Toast.makeText(this@Game2Activity, "일치하는 단어가 없습니다. 다시 입력해주세요.", Toast.LENGTH_LONG).show()
+                                    override fun onFailure(call: Call<gameText>, t: Throwable) {
+                                        Log.d(ContentValues.TAG, "실패: $t")
+                                    }
+                                })
+                            }
+                            else {
+                                Toast.makeText(this@Game2Activity, "일치하는 단어가 없습니다. 다시 입력해주세요.", Toast.LENGTH_LONG).show()
+                            }
                         }
                     }
                     btnAnswer.setOnClickListener {

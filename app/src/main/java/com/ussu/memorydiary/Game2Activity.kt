@@ -28,7 +28,7 @@ class Game2Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game)
+        setContentView(R.layout.activity_game2)
 
         AnswerEditText = findViewById(R.id.editTextTextAnswer)
         GameTextTextView = findViewById(R.id.textViewGameText)

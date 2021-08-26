@@ -27,13 +27,17 @@ class LoginActivity : AppCompatActivity() {
 
         idEditText = findViewById(R.id.editTextTextId)
         pwEditText = findViewById(R.id.editTextTextPassword)
-
     }
 
     fun clickLogin(view: View) {
+
         //입력받은 loginId, loginPw
         var loginId = idEditText.text.toString()
         var loginPw = pwEditText.text.toString()
+
+//        var game_text = mutableListOf<String>("$loginId")
+//        game_text.add("$loginId")
+//        Toast.makeText(this, "$game_text", Toast.LENGTH_LONG).show()
 
         val BASE_URL = "http://192.168.0.104:8080"
 

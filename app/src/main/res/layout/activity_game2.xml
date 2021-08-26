@@ -41,19 +41,27 @@
             android:gravity="center_horizontal">
 
             <Button
-                android:id="@+id/btnCheckAnswer"
+                android:id="@+id/btnSaveWhere"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
+                android:layout_marginRight="24dp"
                 android:text="결과 확인" />
 
             <Button
-                android:id="@+id/btnSaveWhere"
+                android:id="@+id/btnList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="리스트에 저장" />
+
+            <Button
+                android:id="@+id/btnCheckAnswer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="36dp"
-                android:text="저장" />
+                android:text="서버로" />
 
         </LinearLayout>
 

@@ -73,34 +73,42 @@ class Game2Activity : AppCompatActivity() {
 
                         var answer = AnswerEditText.text.toString()
                         var btnWhere = findViewById<Button>(R.id.btnSaveWhere)
+                        var btnList = findViewById<Button>(R.id.btnList)
 
-                        btnWhere.setOnClickListener {
+                        btnList.setOnClickListener {
+                            var answer = AnswerEditText.text.toString()
                             if (game_text.contains(answer)) {
-                                val BASE_URL = "http://192.168.0.104:8080"
-                                var answer = AnswerEditText.text.toString()
+                                var gametextList = mutableListOf<String>()
+                                gametextList.add("$answer")
 
-                                var gson = GsonBuilder()
-                                    .setLenient()
-                                    .create()
+                                btnWhere.setOnClickListener {
+                                    val BASE_URL = "http://192.168.0.104:8080"
+                                    var gameListString = gametextList.joinToString("")
 
-                                val retrofit = Retrofit.Builder()
-                                    .baseUrl(BASE_URL)
-                                    .addConverterFactory(GsonConverterFactory.create(gson))
-                                    .build()
+                                    var gson = GsonBuilder()
+                                        .setLenient()
+                                        .create()
 
-                                val api = retrofit.create(diaryAPI::class.java)
-                                val callGetGameText = api.getGameText((gameText(answer)))
+                                    val retrofit = Retrofit.Builder()
+                                        .baseUrl(BASE_URL)
+                                        .addConverterFactory(GsonConverterFactory.create(gson))
+                                        .build()
 
-                                callGetGameText.enqueue(object : Callback<gameText> {
-                                    override fun onResponse(call: Call<gameText>, response: Response<gameText>) {
-                                        Toast.makeText(this@Game2Activity, "보내주신 데이터가 잘 저장되었어요!", Toast.LENGTH_LONG).show()
-                                        Log.d(ContentValues.TAG, "성공: ${response.raw()}")
-                                    }
+                                    val api = retrofit.create(diaryAPI::class.java)
+                                    val callGetGameText = api.getGameText((gameText(gameListString)))
 
-                                    override fun onFailure(call: Call<gameText>, t: Throwable) {
-                                        Log.d(ContentValues.TAG, "실패: $t")
-                                    }
-                                })
+                                    callGetGameText.enqueue(object : Callback<gameText> {
+                                        override fun onResponse(call: Call<gameText>, response: Response<gameText>) {
+                                            Toast.makeText(this@Game2Activity, "보내주신 데이터가 잘 저장되었어요!", Toast.LENGTH_LONG).show()
+                                            Log.d(ContentValues.TAG, "성공: ${response.raw()}")
+                                        }
+
+                                        override fun onFailure(call: Call<gameText>, t: Throwable) {
+                                            Log.d(ContentValues.TAG, "실패: $t")
+                                        }
+                                    })
+                                }
+
                             }
                             else {
                                 Toast.makeText(this@Game2Activity, "일치하는 단어가 없습니다. 다시 입력해주세요.", Toast.LENGTH_LONG).show()

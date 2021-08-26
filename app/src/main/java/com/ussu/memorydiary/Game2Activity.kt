@@ -78,10 +78,11 @@ class Game2Activity : AppCompatActivity() {
                         var btnWhere = findViewById<Button>(R.id.btnSaveWhere)
                         var btnList = findViewById<Button>(R.id.btnList)
 
+                        var gametextList = mutableListOf<String>()
+
                         btnList.setOnClickListener {
                             var answer = AnswerEditText.text.toString()
                             if (game_text.contains(answer)) {
-                                var gametextList = mutableListOf<String>()
                                 gametextList.add("$answer")
                                 Toast.makeText(this@Game2Activity, "$gametextList", Toast.LENGTH_LONG).show()
 
@@ -103,6 +104,7 @@ class Game2Activity : AppCompatActivity() {
                                     callGetGameText.enqueue(object : Callback<gameText> {
                                         override fun onResponse(call: Call<gameText>, response: Response<gameText>) {
                                             Toast.makeText(this@Game2Activity, "보내주신 데이터가 잘 저장되었어요!", Toast.LENGTH_LONG).show()
+                                            var gametextList = mutableListOf<String>()
                                             Log.d(ContentValues.TAG, "성공: ${response.raw()}")
                                         }
 
@@ -120,6 +122,7 @@ class Game2Activity : AppCompatActivity() {
                     }
                     else {
                         btnWhere.isVisible = false //저장 버튼 비활성화
+                        btnList.isVisible = false //리스트 버튼 비활성화
                         btnAnswer.setOnClickListener {
                             //답 입력받기
                             var answer = AnswerEditText.text.toString()

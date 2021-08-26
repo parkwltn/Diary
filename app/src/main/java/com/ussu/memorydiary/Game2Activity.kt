@@ -71,7 +71,7 @@ class Game2Activity : AppCompatActivity() {
                         var game_text = response.body()!!.game_text
                         GameTextTextView.text = "$game_text"
 
-                        var answer = AnswerEditText.text.toString()
+                        //var answer = AnswerEditText.text.toString()
                         var btnWhere = findViewById<Button>(R.id.btnSaveWhere)
                         var btnList = findViewById<Button>(R.id.btnList)
 

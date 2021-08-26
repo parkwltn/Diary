@@ -36,9 +36,11 @@ class Game2Activity : AppCompatActivity() {
 
         var btnAnswer = findViewById<Button>(R.id.btnCheckAnswer)
         var btnWhere = findViewById<Button>(R.id.btnSaveWhere)
+        var btnList = findViewById<Button>(R.id.btnList)
 
         btnAnswer.isVisible = true
         btnWhere.isVisible = true
+        btnList.isVisible = true
 
         //서버에서 질문, 답 가져오기
         val BASE_URL = "http://192.168.0.104:8080"

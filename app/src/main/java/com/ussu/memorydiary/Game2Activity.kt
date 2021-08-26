@@ -83,7 +83,7 @@ class Game2Activity : AppCompatActivity() {
 
                                 btnWhere.setOnClickListener {
                                     val BASE_URL = "http://192.168.0.104:8080"
-                                    var gameListString = gametextList.joinToString("")
+                                    var gameListString = gametextList.joinToString(" ")
 
                                     var gson = GsonBuilder()
                                         .setLenient()

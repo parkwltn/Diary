@@ -73,6 +73,7 @@ class Game2Activity : AppCompatActivity() {
                         var game_text = response.body()!!.game_text
                         GameTextTextView.text = "$game_text"
 
+
                         //var answer = AnswerEditText.text.toString()
                         var btnWhere = findViewById<Button>(R.id.btnSaveWhere)
                         var btnList = findViewById<Button>(R.id.btnList)
@@ -82,6 +83,7 @@ class Game2Activity : AppCompatActivity() {
                             if (game_text.contains(answer)) {
                                 var gametextList = mutableListOf<String>()
                                 gametextList.add("$answer")
+                                Toast.makeText(this@Game2Activity, "$gametextList", Toast.LENGTH_LONG).show()
 
                                 btnWhere.setOnClickListener {
                                     val BASE_URL = "http://192.168.0.104:8080"
@@ -98,7 +100,6 @@ class Game2Activity : AppCompatActivity() {
 
                                     val api = retrofit.create(diaryAPI::class.java)
                                     val callGetGameText = api.getGameText((gameText(gameListString)))
-
                                     callGetGameText.enqueue(object : Callback<gameText> {
                                         override fun onResponse(call: Call<gameText>, response: Response<gameText>) {
                                             Toast.makeText(this@Game2Activity, "보내주신 데이터가 잘 저장되었어요!", Toast.LENGTH_LONG).show()

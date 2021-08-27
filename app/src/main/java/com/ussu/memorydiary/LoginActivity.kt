@@ -66,11 +66,10 @@ class LoginActivity : AppCompatActivity() {
                         intent.putExtra("id", "$id")
                         startActivity(intent)
                     } else { //id, password가 일치하지 않는 경우
-                        Toast.makeText(view.context, "id, pw를 다시 입력해주세요.", Toast.LENGTH_LONG)
-                            .show()
+                        Toast.makeText(view.context, "pw를 다시 입력해주세요.", Toast.LENGTH_LONG).show()
                     }
                 } else {
-                    Toast.makeText(view.context, "NULL", Toast.LENGTH_LONG).show()
+                    Toast.makeText(view.context, "id를 다시 입력해주세요.", Toast.LENGTH_LONG).show()
                 }
             }
 

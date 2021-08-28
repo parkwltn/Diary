@@ -81,9 +81,9 @@ class GameActivity : AppCompatActivity() {
                                 .build()
 
                             val api = retrofit.create(memberAPI::class.java)
-                            val callreadMemberInfo = api.readMemberInfo(memberInfo("$id", "0", score))
+                            val callSaveScore = api.saveScore(memberInfo("$id", "0", score))
 
-                            callreadMemberInfo.enqueue(object : Callback<memberInfo> {
+                            callSaveScore.enqueue(object : Callback<memberInfo> {
                                 override fun onResponse(call: Call<memberInfo>, response: Response<memberInfo>) {
                                 }
                                 override fun onFailure(call: Call<memberInfo>, t: Throwable) {

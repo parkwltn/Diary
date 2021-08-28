@@ -59,6 +59,7 @@ class Game2Activity : AppCompatActivity() {
                         intent.putExtra("date", "$date")
                         intent.putExtra("id", "$id")
                         intent.putExtra("gameText", "$gameText")
+                        intent.putExtra("score", score)
                         startActivity(intent)
                     } else {
                         btnAnswer.setOnClickListener {

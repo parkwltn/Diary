@@ -11,6 +11,8 @@ import androidx.core.view.isVisible
 import com.google.gson.GsonBuilder
 import com.ussu.memorydiary.API.diaryAPI
 import com.ussu.memorydiary.API.gameText
+import com.ussu.memorydiary.API.memberAPI
+import com.ussu.memorydiary.API.memberInfo
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,7 +31,9 @@ class LocationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_location)
 
+        var id = intent.getStringExtra("id")
         val gameText = intent.getStringExtra("gameText")
+        var score = intent.getIntExtra("score", 0)
 
         var btnWhere = findViewById<Button>(R.id.btnSaveWhere)
 
@@ -132,8 +136,29 @@ class LocationActivity : AppCompatActivity() {
                 val callGetGameText = api.getGameText((gameText(locationString)))
                 callGetGameText.enqueue(object : Callback<gameText> {
                     override fun onResponse(call: Call<gameText>, response: Response<gameText>) {
-
                         Toast.makeText(this@LocationActivity, "잘 저장됨!", Toast.LENGTH_LONG).show()
+                        score = score + 1
+                        val BASE_URL = "http://192.168.0.104:8080"
+
+                        var gson = GsonBuilder()
+                            .setLenient()
+                            .create()
+
+                        val retrofit = Retrofit.Builder()
+                            .baseUrl(BASE_URL)
+                            .addConverterFactory(GsonConverterFactory.create(gson))
+                            .build()
+
+                        val api = retrofit.create(memberAPI::class.java)
+                        val callSaveScore = api.saveScore(memberInfo("$id", "0", score))
+
+                        callSaveScore.enqueue(object : Callback<memberInfo> {
+                            override fun onResponse(call: Call<memberInfo>, response: Response<memberInfo>) {
+                            }
+                            override fun onFailure(call: Call<memberInfo>, t: Throwable) {
+                                Log.d(ContentValues.TAG, "실패: $t")
+                            }
+                        })
                         Log.d(ContentValues.TAG, "성공: ${response.raw()}")
                     }
 

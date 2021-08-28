@@ -136,7 +136,6 @@ class LocationActivity : AppCompatActivity() {
                 val callGetGameText = api.getGameText((gameText(locationString)))
                 callGetGameText.enqueue(object : Callback<gameText> {
                     override fun onResponse(call: Call<gameText>, response: Response<gameText>) {
-                        Toast.makeText(this@LocationActivity, "잘 저장됨!", Toast.LENGTH_LONG).show()
                         score = score + 1
                         val BASE_URL = "http://192.168.0.104:8080"
 

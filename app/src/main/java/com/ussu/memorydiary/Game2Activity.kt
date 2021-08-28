@@ -49,7 +49,6 @@ class Game2Activity : AppCompatActivity() {
             override fun onResponse(call: Call<questionInfo>, response: Response<questionInfo>) {
                 Log.d(ContentValues.TAG, "성공: ${response.raw()}")
                 if (response.body() != null) {
-                    var getAnswer = response.body()!!.answer
                     var score = response.body()!!.score
                     var btnAnswer = findViewById<Button>(R.id.btnCheckAnswer)
 
@@ -65,7 +64,8 @@ class Game2Activity : AppCompatActivity() {
                         btnAnswer.setOnClickListener {
                             //답 입력받기
                             var answer = AnswerEditText.text.toString()
-
+                            var getAnswer = response.body()!!.answer
+                            Toast.makeText(this@Game2Activity, "$answer, $getAnswer", Toast.LENGTH_LONG).show()
                             //답 비교
                             if (answer == getAnswer) { //정답
                                 Toast.makeText(this@Game2Activity, "정답입니다!", Toast.LENGTH_LONG).show()
@@ -92,8 +92,7 @@ class Game2Activity : AppCompatActivity() {
                                     }
                                 })
                             } else {
-                                Toast.makeText(
-                                    this@Game2Activity, "오답입니다! 다시 생각해보세요", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@Game2Activity, "오답입니다! 다시 생각해보세요", Toast.LENGTH_LONG).show()
                             }
                         }
                     }

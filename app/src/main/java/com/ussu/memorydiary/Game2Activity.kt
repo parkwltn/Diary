@@ -65,34 +65,41 @@ class Game2Activity : AppCompatActivity() {
                             //답 입력받기
                             var answer = AnswerEditText.text.toString()
                             var getAnswer = response.body()!!.answer
-                            Toast.makeText(this@Game2Activity, "$answer, $getAnswer", Toast.LENGTH_LONG).show()
+
+                            var getAnswerList = getAnswer.split(" ")
+
+                            var count = getAnswerList.count()
+
                             //답 비교
-                            if (answer == getAnswer) { //정답
-                                Toast.makeText(this@Game2Activity, "정답입니다!", Toast.LENGTH_LONG).show()
-                                score = score + 1
-                                val BASE_URL = "http://192.168.0.104:8080"
+                            for (i in 0 until count) {
+                                if (answer == getAnswerList[i]) {
+                                    Toast.makeText(this@Game2Activity, "정답입니다!", Toast.LENGTH_LONG).show()
+                                    score = score + 1
+                                    val BASE_URL = "http://192.168.0.104:8080"
 
-                                var gson = GsonBuilder()
-                                    .setLenient()
-                                    .create()
+                                    var gson = GsonBuilder()
+                                        .setLenient()
+                                        .create()
 
-                                val retrofit = Retrofit.Builder()
-                                    .baseUrl(BASE_URL)
-                                    .addConverterFactory(GsonConverterFactory.create(gson))
-                                    .build()
+                                    val retrofit = Retrofit.Builder()
+                                        .baseUrl(BASE_URL)
+                                        .addConverterFactory(GsonConverterFactory.create(gson))
+                                        .build()
 
-                                val api = retrofit.create(memberAPI::class.java)
-                                val callSaveScore = api.saveScore(memberInfo("$id", "0", score))
+                                    val api = retrofit.create(memberAPI::class.java)
+                                    val callSaveScore = api.saveScore(memberInfo("$id", "0", score))
 
-                                callSaveScore.enqueue(object : Callback<memberInfo> {
-                                    override fun onResponse(call: Call<memberInfo>, response: Response<memberInfo>) {
-                                    }
-                                    override fun onFailure(call: Call<memberInfo>, t: Throwable) {
-                                        Log.d(ContentValues.TAG, "실패: $t")
-                                    }
-                                })
-                            } else {
-                                Toast.makeText(this@Game2Activity, "오답입니다! 다시 생각해보세요", Toast.LENGTH_LONG).show()
+                                    callSaveScore.enqueue(object : Callback<memberInfo> {
+                                        override fun onResponse(call: Call<memberInfo>, response: Response<memberInfo>) {
+                                        }
+                                        override fun onFailure(call: Call<memberInfo>, t: Throwable) {
+                                            Log.d(ContentValues.TAG, "실패: $t")
+                                        }
+                                    })
+                                    break
+                                } else {
+                                    Toast.makeText(this@Game2Activity, "오답입니다! 다시 생각해보세요", Toast.LENGTH_LONG).show()
+                                }
                             }
                         }
                     }

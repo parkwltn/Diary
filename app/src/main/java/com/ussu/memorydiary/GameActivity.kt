@@ -1,6 +1,7 @@
 package com.ussu.memorydiary
 
 import android.content.ContentValues
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,8 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.gson.GsonBuilder
 import com.ussu.memorydiary.API.diaryAPI
+import com.ussu.memorydiary.API.memberAPI
+import com.ussu.memorydiary.API.memberInfo
 import com.ussu.memorydiary.API.questionInfo
 import retrofit2.Call
 import retrofit2.Callback
@@ -44,7 +47,7 @@ class GameActivity : AppCompatActivity() {
             .build()
 
         val api = retrofit.create(diaryAPI::class.java)
-        val callGetQuestionInfo = api.getAnswer(questionInfo("$id", "$date", "0", "0", "0"))
+        val callGetQuestionInfo = api.getAnswer(questionInfo("$id", "$date", "0", "0", "0", 0))
 
         callGetQuestionInfo.enqueue(object : Callback<questionInfo> {
             override fun onResponse(call: Call<questionInfo>, response: Response<questionInfo>) {
@@ -52,6 +55,7 @@ class GameActivity : AppCompatActivity() {
                 if (response.body() != null) {
                     var question = response.body()!!.question
                     var getAnswer = response.body()!!.answer
+                    var score = response.body()!!.score
 
                     //질문 textView에 띄우기
                     questionTextView.text = "$question"
@@ -64,6 +68,28 @@ class GameActivity : AppCompatActivity() {
                         //답 비교
                         if (answer == getAnswer) { //정답
                             Toast.makeText(this@GameActivity, "정답입니다!", Toast.LENGTH_LONG).show()
+                            score = score + 1
+                            val BASE_URL = "http://192.168.0.104:8080"
+
+                            var gson = GsonBuilder()
+                                .setLenient()
+                                .create()
+
+                            val retrofit = Retrofit.Builder()
+                                .baseUrl(BASE_URL)
+                                .addConverterFactory(GsonConverterFactory.create(gson))
+                                .build()
+
+                            val api = retrofit.create(memberAPI::class.java)
+                            val callreadMemberInfo = api.readMemberInfo(memberInfo("$id", "0", score))
+
+                            callreadMemberInfo.enqueue(object : Callback<memberInfo> {
+                                override fun onResponse(call: Call<memberInfo>, response: Response<memberInfo>) {
+                                }
+                                override fun onFailure(call: Call<memberInfo>, t: Throwable) {
+                                    Log.d(ContentValues.TAG, "실패: $t")
+                                }
+                            })
                         } else {
                             Toast.makeText(this@GameActivity, "오답입니다! 다시 생각해보세요", Toast.LENGTH_LONG).show()
                         }

@@ -20,7 +20,8 @@ data class questionInfo(
     var created_at: String,
     var question: String,
     var answer: String,
-    var game_text: String
+    var game_text: String,
+    var score: Int
 )
 
 data class gameText(

@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.Toast
+import androidx.core.view.isVisible
 import com.google.gson.GsonBuilder
 import com.ussu.memorydiary.API.diaryAPI
 import com.ussu.memorydiary.API.gameText
@@ -39,37 +40,58 @@ class LocationActivity : AppCompatActivity() {
         CB4 = findViewById(R.id.CB4)
         CB5 = findViewById(R.id.CB5)
 
+        CB0.isVisible = true
+        CB1.isVisible = true
+        CB2.isVisible = true
+        CB3.isVisible = true
+        CB4.isVisible = true
+        CB5.isVisible = true
+
         if (gameText != null) {
             val gameTextList = gameText.split(" ") //List
-            if (gameTextList[0] != null) {
+            var count = gameTextList.count()
+            if (count == 1) {
                 CB0.setText(gameTextList[0])
-            } else {
-                CB0.setText("")
-            }
-            if (gameTextList[1] != null) {
+                CB1.isVisible = false
+                CB2.isVisible = false
+                CB3.isVisible = false
+                CB4.isVisible = false
+                CB5.isVisible = false
+            } else if (count == 2) {
+                CB0.setText(gameTextList[0])
                 CB1.setText(gameTextList[1])
-            } else {
-                CB1.setText("")
-            }
-            if (gameTextList[2] != null) {
+                CB2.isVisible = false
+                CB3.isVisible = false
+                CB4.isVisible = false
+                CB5.isVisible = false
+            } else if (count == 3) {
+                CB0.setText(gameTextList[0])
+                CB1.setText(gameTextList[1])
                 CB2.setText(gameTextList[2])
-            } else {
-                CB2.setText("")
-            }
-            if (gameTextList[3] != null) {
+                CB3.isVisible = false
+                CB4.isVisible = false
+                CB5.isVisible = false
+            } else if (count == 4) {
+                CB0.setText(gameTextList[0])
+                CB1.setText(gameTextList[1])
+                CB2.setText(gameTextList[2])
                 CB3.setText(gameTextList[3])
-            } else {
-                CB3.setText("")
-            }
-            if (gameTextList[4] != null) {
+                CB4.isVisible = false
+                CB5.isVisible = false
+            } else if (count == 5) {
+                CB0.setText(gameTextList[0])
+                CB1.setText(gameTextList[1])
+                CB2.setText(gameTextList[2])
+                CB3.setText(gameTextList[3])
                 CB4.setText(gameTextList[4])
+                CB5.isVisible = false
             } else {
-                CB4.setText("")
-            }
-            if (gameTextList[5] != null) {
+                CB0.setText(gameTextList[0])
+                CB1.setText(gameTextList[1])
+                CB2.setText(gameTextList[2])
+                CB3.setText(gameTextList[3])
+                CB4.setText(gameTextList[4])
                 CB5.setText(gameTextList[5])
-            } else {
-                CB5.setText("")
             }
 
             var locationList = mutableListOf<String>()

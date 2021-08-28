@@ -1,4 +1,4 @@
-package com.ussu.result
+package com.ussu.memorydiary
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -23,8 +23,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class Game2Activity : AppCompatActivity() {
     private lateinit var AnswerEditText: EditText
-    private lateinit var GameTextTextView: TextView
-    private lateinit var gameTextWarning: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -32,8 +30,6 @@ class Game2Activity : AppCompatActivity() {
         setContentView(R.layout.activity_game2)
 
         AnswerEditText = findViewById(R.id.editTextTextAnswer)
-
-        var btnAnswer = findViewById<Button>(R.id.btnCheckAnswer)
 
         //서버에서 질문, 답 가져오기
         val BASE_URL = "http://192.168.0.104:8080"

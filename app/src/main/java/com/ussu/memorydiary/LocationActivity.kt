@@ -41,13 +41,24 @@ class LocationActivity : AppCompatActivity() {
 
         if (gameText != null) {
             val gameTextList = gameText.split(" ") //List
-
-            CB0.setText(gameTextList[0])
-            CB1.setText(gameTextList[1])
-            CB2.setText(gameTextList[2])
-            CB3.setText(gameTextList[3])
-            CB4.setText(gameTextList[4])
-            CB5.setText(gameTextList[5])
+            if (gameTextList[0] != null) {
+                CB0.setText(gameTextList[0])
+            }
+            if (gameTextList[1] != null) {
+                CB1.setText(gameTextList[1])
+            }
+            if (gameTextList[2] != null) {
+                CB2.setText(gameTextList[2])
+            }
+            if (gameTextList[3] != null) {
+                CB3.setText(gameTextList[3])
+            }
+            if (gameTextList[4] != null) {
+                CB4.setText(gameTextList[4])
+            }
+            if (gameTextList[5] != null) {
+                CB4.setText(gameTextList[5])
+            }
 
             var locationList = mutableListOf<String>()
 
@@ -74,8 +85,6 @@ class LocationActivity : AppCompatActivity() {
                 val BASE_URL = "http://192.168.0.104:8080"
                 var locationString = locationList.joinToString(" ")
 
-                Toast.makeText(this, "$locationString", Toast.LENGTH_LONG).show()
-
                 var gson = GsonBuilder()
                     .setLenient()
                     .create()
@@ -89,6 +98,7 @@ class LocationActivity : AppCompatActivity() {
                 val callGetGameText = api.getGameText((gameText(locationString)))
                 callGetGameText.enqueue(object : Callback<gameText> {
                     override fun onResponse(call: Call<gameText>, response: Response<gameText>) {
+                        Toast.makeText(this@LocationActivity, "잘 저장됨!", Toast.LENGTH_LONG).show()
                         Log.d(ContentValues.TAG, "성공: ${response.raw()}")
                     }
 
@@ -96,12 +106,7 @@ class LocationActivity : AppCompatActivity() {
                         Log.d(ContentValues.TAG, "실패: $t")
                     }
                 })
-
-
             }
         }
-
-
-
     }
 }

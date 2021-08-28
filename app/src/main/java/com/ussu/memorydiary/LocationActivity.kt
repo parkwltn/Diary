@@ -43,21 +43,33 @@ class LocationActivity : AppCompatActivity() {
             val gameTextList = gameText.split(" ") //List
             if (gameTextList[0] != null) {
                 CB0.setText(gameTextList[0])
+            } else {
+                CB0.setText("")
             }
             if (gameTextList[1] != null) {
                 CB1.setText(gameTextList[1])
+            } else {
+                CB1.setText("")
             }
             if (gameTextList[2] != null) {
                 CB2.setText(gameTextList[2])
+            } else {
+                CB2.setText("")
             }
             if (gameTextList[3] != null) {
                 CB3.setText(gameTextList[3])
+            } else {
+                CB3.setText("")
             }
             if (gameTextList[4] != null) {
                 CB4.setText(gameTextList[4])
+            } else {
+                CB4.setText("")
             }
             if (gameTextList[5] != null) {
-                CB4.setText(gameTextList[5])
+                CB5.setText(gameTextList[5])
+            } else {
+                CB5.setText("")
             }
 
             var locationList = mutableListOf<String>()
@@ -98,6 +110,7 @@ class LocationActivity : AppCompatActivity() {
                 val callGetGameText = api.getGameText((gameText(locationString)))
                 callGetGameText.enqueue(object : Callback<gameText> {
                     override fun onResponse(call: Call<gameText>, response: Response<gameText>) {
+
                         Toast.makeText(this@LocationActivity, "잘 저장됨!", Toast.LENGTH_LONG).show()
                         Log.d(ContentValues.TAG, "성공: ${response.raw()}")
                     }

@@ -44,40 +44,13 @@
                 android:id="@+id/btnCheckAnswer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginRight="24dp"
-                android:text="결과 확인" />
+                android:text="제출" />
 
-            <Button
-                android:id="@+id/btnList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:text="장소 찾기" />
-
-            <Button
-                android:id="@+id/btnSaveWhere"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="36dp"
-                android:text="서버 저장" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/showWarning"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="아래에서 장소와 관련된 단어를 찾아 입력해주세요."
-            android:visibility="invisible" />
-
-        <TextView
-            android:id="@+id/textViewGameText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
     </LinearLayout>
 
 

@@ -24,4 +24,9 @@ class HomeActivity : AppCompatActivity() {
         intent.putExtra("id", "$id")
         startActivity(intent)
     }
+
+    fun clickSetting(view: View) {
+        var intent = Intent(this@HomeActivity, TextSizeActivity::class.java)
+        startActivity(intent)
+    }
 }

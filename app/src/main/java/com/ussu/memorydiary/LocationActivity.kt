@@ -1,6 +1,7 @@
 package com.ussu.memorydiary
 
 import android.content.ContentValues
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -153,6 +154,9 @@ class LocationActivity : AppCompatActivity() {
 
                         callSaveScore.enqueue(object : Callback<memberInfo> {
                             override fun onResponse(call: Call<memberInfo>, response: Response<memberInfo>) {
+                                var intent = Intent(this@LocationActivity, ResultActivity::class.java)
+                                intent.putExtra("score", score)
+                                startActivity(intent)
                             }
                             override fun onFailure(call: Call<memberInfo>, t: Throwable) {
                                 Log.d(ContentValues.TAG, "실패: $t")

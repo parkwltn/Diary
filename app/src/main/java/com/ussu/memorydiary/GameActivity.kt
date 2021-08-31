@@ -87,7 +87,7 @@ class GameActivity : AppCompatActivity() {
                             callSaveScore.enqueue(object : Callback<memberInfo> {
                                 override fun onResponse(call: Call<memberInfo>, response: Response<memberInfo>) {
                                     var intent = Intent(this@GameActivity, ResultActivity::class.java)
-                                    intent.putExtra("score", "$score")
+                                    intent.putExtra("score", score)
                                     startActivity(intent)
                                 }
                                 override fun onFailure(call: Call<memberInfo>, t: Throwable) {

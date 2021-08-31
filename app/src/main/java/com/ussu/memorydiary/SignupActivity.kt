@@ -17,7 +17,7 @@ import retrofit2.Response
 import retrofit2.Retrofit.*
 import retrofit2.converter.gson.GsonConverterFactory
 
-class SignupActivity : TextSizeActivity() {
+class SignupActivity : AppCompatActivity() {
 
     private lateinit var idEditText: EditText //나중에 값을 넣어주겠다
     private lateinit var pwEditText: EditText

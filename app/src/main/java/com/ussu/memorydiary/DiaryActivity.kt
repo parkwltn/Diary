@@ -19,7 +19,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class DiaryActivity : TextSizeActivity() {
+class DiaryActivity : AppCompatActivity() {
 
     private lateinit var dateTextView: TextView
     private lateinit var diaryEditText: EditText

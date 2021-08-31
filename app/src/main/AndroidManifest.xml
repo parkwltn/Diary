@@ -13,6 +13,7 @@
         android:theme="@style/Theme.MemoryDiary"
         android:usesCleartextTraffic="true">
         <activity android:name=".LocationActivity" />
+        <activity android:name=".ResultActivity" />
         <activity android:name=".Game2Activity" />
         <activity android:name=".GameVersionActivity" />
         <activity android:name=".GameCalendarActivity" />

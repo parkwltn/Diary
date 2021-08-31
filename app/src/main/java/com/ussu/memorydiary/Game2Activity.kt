@@ -91,6 +91,9 @@ class Game2Activity : AppCompatActivity() {
 
                                     callSaveScore.enqueue(object : Callback<memberInfo> {
                                         override fun onResponse(call: Call<memberInfo>, response: Response<memberInfo>) {
+                                            var intent = Intent(this@Game2Activity, ResultActivity::class.java)
+                                            intent.putExtra("score", "$score")
+                                            startActivity(intent)
                                         }
                                         override fun onFailure(call: Call<memberInfo>, t: Throwable) {
                                             Log.d(ContentValues.TAG, "실패: $t")

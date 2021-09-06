@@ -20,7 +20,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class LocationActivity : AppCompatActivity() {
+class LocationActivity : BaseActivity() {
     private lateinit var CB0: CheckBox
     private lateinit var CB1: CheckBox
     private lateinit var CB2: CheckBox

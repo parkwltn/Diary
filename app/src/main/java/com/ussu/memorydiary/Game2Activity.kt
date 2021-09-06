@@ -18,7 +18,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Game2Activity : AppCompatActivity() {
+class Game2Activity : BaseActivity() {
     private lateinit var AnswerEditText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {

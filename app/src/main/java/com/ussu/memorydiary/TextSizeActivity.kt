@@ -1,13 +1,10 @@
 package com.ussu.memorydiary
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
 import com.ussu.memorydiary.databinding.ActivityTextSizeBinding
 
-
-open class TextSizeActivity : AppCompatActivity() {
-
+class TextSizeActivity : BaseActivity() {
     companion object {
         private const val TAG = "TextSizeActivity"
     }
@@ -16,32 +13,17 @@ open class TextSizeActivity : AppCompatActivity() {
     private var currentTheme = R.style.Theme_App_Medium
     private lateinit var pref: DefaultPreferenceManager
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pref = DefaultPreferenceManager(this)
-
-        val textSize = pref.getTextSize()
-        currentTheme = getAppTheme(textSize)
-        setTheme(currentTheme)
-
-        viewBinding = ActivityTextSizeBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
-
         initView()
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun initView() {
+        pref = DefaultPreferenceManager(this)
+        viewBinding = ActivityTextSizeBinding.inflate(layoutInflater)
 
-        val textSize = pref.getTextSize()
-        val settingTheme = getAppTheme(textSize)
-
-        if (currentTheme != settingTheme) {
-            recreate()
-        }
-    }
-
-    private fun initView() {
         viewBinding.textsizeSeekbar.progress = pref.getTextSize()
         viewBinding.textsizeSeekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -62,15 +44,4 @@ open class TextSizeActivity : AppCompatActivity() {
 
             }
         })
-
-    }
-
-
-    private fun getAppTheme(textSize: Int) =
-        when (textSize) {
-            0 -> R.style.Theme_App_Small
-            1 -> R.style.Theme_App_Medium
-            2 -> R.style.Theme_App_Large
-            else -> R.style.Theme_App_Medium
-        }
-}
+    }}

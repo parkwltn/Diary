@@ -61,7 +61,8 @@
                 android:layout_marginTop="24dp"
                 android:onClick="clickLogin"
                 android:padding="16dp"
-                android:text="로그인" />
+                android:text="로그인"
+                android:textSize="?attr/mainTextSize"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -69,7 +70,8 @@
                 android:layout_marginTop="24dp"
                 android:padding="16dp"
                 android:onClick="goSignup"
-                android:text="회원가입 이동" />
+                android:text="회원가입 이동"
+                android:textSize="?attr/mainTextSize"/>
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

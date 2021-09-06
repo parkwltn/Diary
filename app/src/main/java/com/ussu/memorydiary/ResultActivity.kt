@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.ussu.memorydiary.R
 
-class ResultActivity : AppCompatActivity() {
+class ResultActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

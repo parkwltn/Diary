@@ -19,7 +19,8 @@
             android:id="@+id/textViewQuestion"
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            android:text="어디에 다녀왔나요?" />
+            android:text="어디에 다녀왔나요?"
+            android:textSize="?attr/mainTextSize"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,7 +31,9 @@
                 android:id="@+id/editTextTextAnswer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="답을 입력하세요" />
+                android:hint="답을 입력하세요"
+                android:textSize="?attr/mainTextSize"
+                />
 
 
         </LinearLayout>
@@ -46,7 +49,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="24dp"
-                android:text="제출" />
+                android:text="제출"
+                android:textSize="?attr/mainTextSize"/>
 
 
         </LinearLayout>

@@ -20,7 +20,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class GameActivity : AppCompatActivity() {
+class GameActivity : BaseActivity() {
     private lateinit var AnswerEditText: EditText
     private lateinit var questionTextView: TextView
 

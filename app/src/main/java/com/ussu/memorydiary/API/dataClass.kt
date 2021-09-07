@@ -13,7 +13,7 @@ data class memberInfo(
     var member_id: String,
     var member_password: String,
     var score: Int,
-    var score_ox: Int
+    var created_at: String
 )
 
 //질문, 답

@@ -57,7 +57,7 @@ class SignupActivity : BaseActivity() {
                     .build()
 
                 val api = retrofit.create(memberAPI::class.java)
-                val callSaveMemberInfo = api.saveMemberInfo(memberInfo(id, pw, score, 0))
+                val callSaveMemberInfo = api.saveMemberInfo(memberInfo(id, pw, score, "0"))
 
                 callSaveMemberInfo.enqueue(object : Callback<memberInfo> {
                     override fun onResponse(call: Call<memberInfo>, response: Response<memberInfo>) {

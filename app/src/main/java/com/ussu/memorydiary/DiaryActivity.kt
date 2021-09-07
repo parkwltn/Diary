@@ -48,7 +48,7 @@ class DiaryActivity : BaseActivity() {
             .build()
 
         val api = retrofit.create(diaryAPI::class.java)
-        val callReadDiaryText = api.readDiaryText(textInfo("$id", "$date", "0"))
+        val callReadDiaryText = api.readDiaryText(textInfo("$id", "$date", "0", 0))
 
         callReadDiaryText.enqueue(object : Callback<textInfo> {
             override fun onResponse(call: Call<textInfo>, response: Response<textInfo>) {
@@ -74,7 +74,7 @@ class DiaryActivity : BaseActivity() {
                             .build()
 
                         val api = retrofit.create(diaryAPI::class.java)
-                        val callDeleteDiaryText = api.deleteDiaryText(textInfo("$id", "$date", "$text"))
+                        val callDeleteDiaryText = api.deleteDiaryText(textInfo("$id", "$date", "$text", 0))
 
                         callDeleteDiaryText.enqueue(object : Callback<textInfo> {
                             override fun onResponse(call: Call<textInfo>, response: Response<textInfo>) {
@@ -97,7 +97,7 @@ class DiaryActivity : BaseActivity() {
                                         .build()
 
                                     val api = retrofit.create(diaryAPI::class.java)
-                                    val callSaveDiaryText = api.saveDiaryText(textInfo("$id", "$date", "$text"))
+                                    val callSaveDiaryText = api.saveDiaryText(textInfo("$id", "$date", "$text", 0))
 
                                     callSaveDiaryText.enqueue(object : Callback<textInfo> {
                                         override fun onResponse(call: Call<textInfo>, response: Response<textInfo>) {
@@ -143,7 +143,7 @@ class DiaryActivity : BaseActivity() {
 
                             val api = retrofit.create(diaryAPI::class.java)
                             val callSaveDiaryText =
-                                api.saveDiaryText(textInfo("$id", "$date", "$text"))
+                                api.saveDiaryText(textInfo("$id", "$date", "$text", 0))
 
                             callSaveDiaryText.enqueue(object : Callback<textInfo> {
                                 override fun onResponse(call: Call<textInfo>, response: Response<textInfo>) {
@@ -182,7 +182,7 @@ class DiaryActivity : BaseActivity() {
                             .build()
 
                         val api = retrofit.create(diaryAPI::class.java)
-                        val callSaveDiaryText = api.saveDiaryText(textInfo("$id", "$date", "$text"))
+                        val callSaveDiaryText = api.saveDiaryText(textInfo("$id", "$date", "$text", 0))
 
                         callSaveDiaryText.enqueue(object : Callback<textInfo> {
                             override fun onResponse(call: Call<textInfo>, response: Response<textInfo>) {

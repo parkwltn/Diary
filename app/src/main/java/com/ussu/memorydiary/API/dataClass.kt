@@ -4,7 +4,8 @@ package com.ussu.memorydiary.API
 data class textInfo(
     var member_id: String,
     var created_at: String,
-    var text: String
+    var text: String,
+    var score_ox: Int
 )
 
 //회원가입, 로그인

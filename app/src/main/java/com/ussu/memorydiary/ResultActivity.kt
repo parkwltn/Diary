@@ -1,7 +1,9 @@
 package com.ussu.memorydiary
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.Toast
@@ -70,5 +72,10 @@ class ResultActivity : BaseActivity() {
         } else {
             Toast.makeText(this, "score가 범위 안에 없습니다.", Toast.LENGTH_LONG).show()
         }
+    }
+
+    fun btnHome(view: View) {
+        var intent = Intent(this@ResultActivity, HomeActivity::class.java)
+        startActivity(intent)
     }
 }

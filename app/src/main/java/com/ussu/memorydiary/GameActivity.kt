@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import com.google.gson.GsonBuilder
 import com.ussu.memorydiary.API.diaryAPI
 import com.ussu.memorydiary.API.memberAPI
@@ -86,6 +87,7 @@ class GameActivity : BaseActivity() {
 
                             callSaveScore.enqueue(object : Callback<memberInfo> {
                                 override fun onResponse(call: Call<memberInfo>, response: Response<memberInfo>) {
+                                    btnAnswer.isVisible = false
                                     var intent = Intent(this@GameActivity, ResultActivity::class.java)
                                     intent.putExtra("score", score)
                                     startActivity(intent)

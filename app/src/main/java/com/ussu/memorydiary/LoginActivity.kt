@@ -51,7 +51,7 @@ class LoginActivity : BaseActivity() {
             .build()
 
         val api = retrofit.create(memberAPI::class.java)
-        val callreadMemberInfo = api.readMemberInfo(memberInfo("$loginId", "$loginPw", 0))
+        val callreadMemberInfo = api.readMemberInfo(memberInfo("$loginId", "$loginPw", 0, 0))
 
         callreadMemberInfo.enqueue(object : Callback<memberInfo> {
             override fun onResponse(call: Call<memberInfo>, response: Response<memberInfo>) {

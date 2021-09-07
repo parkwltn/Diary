@@ -12,7 +12,8 @@ data class textInfo(
 data class memberInfo(
     var member_id: String,
     var member_password: String,
-    var score: Int
+    var score: Int,
+    var score_ox: Int
 )
 
 //질문, 답

@@ -61,9 +61,11 @@ class GameActivity : BaseActivity() {
                     var btnAnswer = findViewById<Button>(R.id.btnCheckAnswer)
 
                     if (score_ox == 1) {
+                        questionTextView.text = "$question"
                         btnAnswer.isVisible = false
                         Toast.makeText(this@GameActivity, "다른 날짜를 선택해주세요.", Toast.LENGTH_LONG).show()
                     } else {
+                        Toast.makeText(this@GameActivity, "$score_ox", Toast.LENGTH_LONG).show()
                         //질문 textView에 띄우기
                         questionTextView.text = "$question"
 

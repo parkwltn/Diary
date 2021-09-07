@@ -32,6 +32,8 @@ class LocationActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_location)
 
+        val date = intent.getStringExtra("date")
+
         var id = intent.getStringExtra("id")
         val gameText = intent.getStringExtra("gameText")
         var score = intent.getIntExtra("score", 0)
@@ -150,7 +152,7 @@ class LocationActivity : BaseActivity() {
                             .build()
 
                         val api = retrofit.create(memberAPI::class.java)
-                        val callSaveScore = api.saveScore(memberInfo("$id", "0", score))
+                        val callSaveScore = api.saveScore(memberInfo("$id", "0", score, "$date"))
 
                         callSaveScore.enqueue(object : Callback<memberInfo> {
                             override fun onResponse(call: Call<memberInfo>, response: Response<memberInfo>) {

@@ -31,7 +31,7 @@ class ResultActivity : BaseActivity() {
 
         val score = intent.getIntExtra("score", 0)
 
-        Toast.makeText(this, score, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "$score", Toast.LENGTH_LONG).show()
 
         if (score in 1..2) {
             scoreImage.setImageResource(R.drawable.leaf)

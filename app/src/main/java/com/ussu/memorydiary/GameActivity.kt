@@ -2,7 +2,6 @@ package com.ussu.memorydiary
 
 import android.content.ContentValues
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -48,7 +47,7 @@ class GameActivity : BaseActivity() {
             .build()
 
         val api = retrofit.create(diaryAPI::class.java)
-        val callGetQuestionInfo = api.getAnswer(questionInfo("$id", "$date", "0", "0", "0", 0, 0))
+        val callGetQuestionInfo = api.getAnswer(questionInfo("$id", "$date", "0", "0", "0", 0, 100, 100))
 
         callGetQuestionInfo.enqueue(object : Callback<questionInfo> {
             override fun onResponse(call: Call<questionInfo>, response: Response<questionInfo>) {
@@ -57,7 +56,7 @@ class GameActivity : BaseActivity() {
                     var question = response.body()!!.question
                     var getAnswer = response.body()!!.answer
                     var score = response.body()!!.score
-                    var score_ox = response.body()!!.score_ox
+                    var score_ox = response.body()!!.score_ox_game1
                     var btnAnswer = findViewById<Button>(R.id.btnCheckAnswer)
 
                     if (score_ox == 1) {
@@ -65,7 +64,6 @@ class GameActivity : BaseActivity() {
                         btnAnswer.isVisible = false
                         Toast.makeText(this@GameActivity, "다른 날짜를 선택해주세요.", Toast.LENGTH_LONG).show()
                     } else {
-                        Toast.makeText(this@GameActivity, "$score_ox", Toast.LENGTH_LONG).show()
                         //질문 textView에 띄우기
                         questionTextView.text = "$question"
 
@@ -97,6 +95,7 @@ class GameActivity : BaseActivity() {
                                     override fun onResponse(call: Call<memberInfo>, response: Response<memberInfo>) {
                                         btnAnswer.isVisible = false
                                         var intent = Intent(this@GameActivity, ResultActivity::class.java)
+                                        intent.putExtra("id", id)
                                         intent.putExtra("score", score)
                                         startActivity(intent)
                                     }

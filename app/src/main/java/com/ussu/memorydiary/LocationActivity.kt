@@ -157,6 +157,7 @@ class LocationActivity : BaseActivity() {
                         callSaveScore.enqueue(object : Callback<memberInfo> {
                             override fun onResponse(call: Call<memberInfo>, response: Response<memberInfo>) {
                                 var intent = Intent(this@LocationActivity, ResultActivity::class.java)
+                                intent.putExtra("id", id)
                                 intent.putExtra("score", score)
                                 startActivity(intent)
                             }

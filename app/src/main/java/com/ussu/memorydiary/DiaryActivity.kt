@@ -36,7 +36,7 @@ class DiaryActivity : BaseActivity() {
 
         diaryEditText.setFilters(arrayOf(InputFilter { source, start, end, dest, dstart, dend ->
             val ps: Pattern =
-                Pattern.compile("^[ㄱ-ㅣ가-힣]*$")
+                Pattern.compile("^[ㄱ-ㅣ가-힣 .?!]*$")
             if (source == "" || ps.matcher(source).matches()) {
                 return@InputFilter source
             } else {

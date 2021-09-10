@@ -43,7 +43,8 @@ class Game2Activity : BaseActivity() {
             .build()
 
         val api = retrofit.create(diaryAPI::class.java)
-        val callGetQuestionInfo = api.getAnswer2(questionInfo("$id", "$date", "0", "0", "0", 0, 0))
+        val callGetQuestionInfo =
+            api.getAnswer2(questionInfo("$id", "$date", "0", "0", "0", 0, 100, 100))
 
         callGetQuestionInfo.enqueue(object : Callback<questionInfo> {
             override fun onResponse(call: Call<questionInfo>, response: Response<questionInfo>) {
@@ -51,11 +52,12 @@ class Game2Activity : BaseActivity() {
                 if (response.body() != null) {
                     var score = response.body()!!.score
                     var btnAnswer = findViewById<Button>(R.id.btnCheckAnswer)
-                    var score_ox = response.body()!!.score_ox
+                    var score_ox2 = response.body()!!.score_ox_game2
 
-                    if (score_ox == 1) {
+                    if (score_ox2 == 1) {
                         btnAnswer.isVisible = false
-                        Toast.makeText(this@Game2Activity, "다른 날짜를 선택해주세요.", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@Game2Activity, "다른 날짜를 선택해주세요.", Toast.LENGTH_LONG)
+                            .show()
                     } else {
                         if (response.body()!!.answer == "99") {
                             var gameText = response.body()!!.game_text
@@ -76,7 +78,7 @@ class Game2Activity : BaseActivity() {
                                 var count = getAnswerList.count()
 
                                 //답 비교
-                                for (i in 0 until count) {
+                                for (i in 0 until count - 1) {
                                     if (answer == getAnswerList[i]) {
                                         Toast.makeText(
                                             this@Game2Activity,
@@ -108,6 +110,7 @@ class Game2Activity : BaseActivity() {
                                                     this@Game2Activity,
                                                     ResultActivity::class.java
                                                 )
+                                                intent.putExtra("id", id)
                                                 intent.putExtra("score", score)
                                                 startActivity(intent)
                                             }

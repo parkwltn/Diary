@@ -75,7 +75,9 @@ class ResultActivity : BaseActivity() {
     }
 
     fun btnHome(view: View) {
+        var id = intent.getStringExtra("id")
         var intent = Intent(this@ResultActivity, HomeActivity::class.java)
+        intent.putExtra("id", id)
         startActivity(intent)
     }
 }

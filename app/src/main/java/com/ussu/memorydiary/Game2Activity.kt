@@ -51,57 +51,82 @@ class Game2Activity : BaseActivity() {
                 if (response.body() != null) {
                     var score = response.body()!!.score
                     var btnAnswer = findViewById<Button>(R.id.btnCheckAnswer)
+                    var score_ox = response.body()!!.score_ox
 
-                    if (response.body()!!.answer == "99") {
-                        var gameText = response.body()!!.game_text
-                        var intent = Intent(this@Game2Activity, LocationActivity::class.java)
-                        intent.putExtra("date", "$date")
-                        intent.putExtra("id", "$id")
-                        intent.putExtra("gameText", "$gameText")
-                        intent.putExtra("score", score)
-                        startActivity(intent)
+                    if (score_ox == 1) {
+                        btnAnswer.isVisible = false
+                        Toast.makeText(this@Game2Activity, "다른 날짜를 선택해주세요.", Toast.LENGTH_LONG).show()
                     } else {
-                        btnAnswer.setOnClickListener {
-                            //답 입력받기
-                            var answer = AnswerEditText.text.toString()
-                            var getAnswer = response.body()!!.answer
+                        if (response.body()!!.answer == "99") {
+                            var gameText = response.body()!!.game_text
+                            var intent = Intent(this@Game2Activity, LocationActivity::class.java)
+                            intent.putExtra("date", "$date")
+                            intent.putExtra("id", "$id")
+                            intent.putExtra("gameText", "$gameText")
+                            intent.putExtra("score", score)
+                            startActivity(intent)
+                        } else {
+                            btnAnswer.setOnClickListener {
+                                //답 입력받기
+                                var answer = AnswerEditText.text.toString()
+                                var getAnswer = response.body()!!.answer
 
-                            var getAnswerList = getAnswer.split(" ")
+                                var getAnswerList = getAnswer.split(" ")
 
-                            var count = getAnswerList.count()
+                                var count = getAnswerList.count()
 
-                            //답 비교
-                            for (i in 0 until count) {
-                                if (answer == getAnswerList[i]) {
-                                    Toast.makeText(this@Game2Activity, "정답입니다!", Toast.LENGTH_LONG).show()
-                                    score = score + 1
-                                    val BASE_URL = "http://192.168.0.104:8080"
+                                //답 비교
+                                for (i in 0 until count) {
+                                    if (answer == getAnswerList[i]) {
+                                        Toast.makeText(
+                                            this@Game2Activity,
+                                            "정답입니다!",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                        score = score + 1
+                                        val BASE_URL = "http://192.168.0.104:8080"
 
-                                    var gson = GsonBuilder()
-                                        .setLenient()
-                                        .create()
+                                        var gson = GsonBuilder()
+                                            .setLenient()
+                                            .create()
 
-                                    val retrofit = Retrofit.Builder()
-                                        .baseUrl(BASE_URL)
-                                        .addConverterFactory(GsonConverterFactory.create(gson))
-                                        .build()
+                                        val retrofit = Retrofit.Builder()
+                                            .baseUrl(BASE_URL)
+                                            .addConverterFactory(GsonConverterFactory.create(gson))
+                                            .build()
 
-                                    val api = retrofit.create(memberAPI::class.java)
-                                    val callSaveScore = api.saveScore(memberInfo("$id", "0", score, "$date"))
+                                        val api = retrofit.create(memberAPI::class.java)
+                                        val callSaveScore =
+                                            api.saveScore(memberInfo("$id", "0", score, "$date"))
 
-                                    callSaveScore.enqueue(object : Callback<memberInfo> {
-                                        override fun onResponse(call: Call<memberInfo>, response: Response<memberInfo>) {
-                                            var intent = Intent(this@Game2Activity, ResultActivity::class.java)
-                                            intent.putExtra("score", score)
-                                            startActivity(intent)
-                                        }
-                                        override fun onFailure(call: Call<memberInfo>, t: Throwable) {
-                                            Log.d(ContentValues.TAG, "실패: $t")
-                                        }
-                                    })
-                                    break
-                                } else {
-                                    Toast.makeText(this@Game2Activity, "오답입니다! 다시 생각해보세요", Toast.LENGTH_LONG).show()
+                                        callSaveScore.enqueue(object : Callback<memberInfo> {
+                                            override fun onResponse(
+                                                call: Call<memberInfo>,
+                                                response: Response<memberInfo>
+                                            ) {
+                                                var intent = Intent(
+                                                    this@Game2Activity,
+                                                    ResultActivity::class.java
+                                                )
+                                                intent.putExtra("score", score)
+                                                startActivity(intent)
+                                            }
+
+                                            override fun onFailure(
+                                                call: Call<memberInfo>,
+                                                t: Throwable
+                                            ) {
+                                                Log.d(ContentValues.TAG, "실패: $t")
+                                            }
+                                        })
+                                        break
+                                    } else {
+                                        Toast.makeText(
+                                            this@Game2Activity,
+                                            "오답입니다! 다시 생각해보세요",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    }
                                 }
                             }
                         }

@@ -99,7 +99,7 @@ class Game2Activity : BaseActivity() {
 
                                         val api = retrofit.create(memberAPI::class.java)
                                         val callSaveScore =
-                                            api.saveScore(memberInfo("$id", "0", score, "$date"))
+                                            api.saveScore2(memberInfo("$id", "0", score, "$date"))
 
                                         callSaveScore.enqueue(object : Callback<memberInfo> {
                                             override fun onResponse(

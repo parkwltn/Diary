@@ -56,7 +56,7 @@ class GameActivity : BaseActivity() {
                     var question = response.body()!!.question
                     var getAnswer = response.body()!!.answer
                     var score = response.body()!!.score
-                    var score_ox = response.body()!!.score_ox_game1
+                    var score_ox = response.body()!!.score_ox1
                     var btnAnswer = findViewById<Button>(R.id.btnCheckAnswer)
 
                     if (score_ox == 1) {

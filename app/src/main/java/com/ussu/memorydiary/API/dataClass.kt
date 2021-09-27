@@ -24,8 +24,8 @@ data class questionInfo(
     var answer: String,
     var game_text: String,
     var score: Int,
-    var score_ox_game1: Int,
-    var score_ox_game2: Int
+    var score_ox1: Int,
+    var score_ox2: Int
 )
 
 data class gameText(

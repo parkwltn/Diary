@@ -52,7 +52,7 @@ class Game2Activity : BaseActivity() {
                 if (response.body() != null) {
                     var score = response.body()!!.score
                     var btnAnswer = findViewById<Button>(R.id.btnCheckAnswer)
-                    var score_ox2 = response.body()!!.score_ox_game2
+                    var score_ox2 = response.body()!!.score_ox2
 
                     if (score_ox2 == 1) {
                         btnAnswer.isVisible = false

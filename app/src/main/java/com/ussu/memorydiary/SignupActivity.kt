@@ -45,7 +45,7 @@ class SignupActivity : BaseActivity() {
             }
             else -> { //회원가입 성공
                 //서버로 id, pw 전달
-                val BASE_URL = "http://192.168.0.104:8080"
+                val BASE_URL = "http://3.35.88.89:8080"
 
                 var gson = GsonBuilder()
                     .setLenient()

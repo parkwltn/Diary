@@ -21,6 +21,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class GameActivity : BaseActivity() {
+    private lateinit var dateTextView: TextView
     private lateinit var AnswerEditText: EditText
     private lateinit var questionTextView: TextView
 
@@ -29,6 +30,7 @@ class GameActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
+        dateTextView = findViewById(R.id.textViewDate)
         AnswerEditText = findViewById(R.id.editTextTextAnswer)
         questionTextView = findViewById(R.id.textViewQuestion)
 
@@ -36,6 +38,8 @@ class GameActivity : BaseActivity() {
         val BASE_URL = "http://3.35.88.89:8080"
         val id = intent.getStringExtra("id")
         val date = intent.getStringExtra("date")
+
+        dateTextView.text = "$date"
 
         var gson = GsonBuilder()
             .setLenient()

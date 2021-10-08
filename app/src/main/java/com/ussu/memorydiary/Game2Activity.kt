@@ -19,6 +19,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class Game2Activity : BaseActivity() {
+    private lateinit var dateTextView: TextView
     private lateinit var AnswerEditText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,12 +27,15 @@ class Game2Activity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game2)
 
+        dateTextView = findViewById(R.id.textViewDate)
         AnswerEditText = findViewById(R.id.editTextTextAnswer)
 
         //서버에서 질문, 답 가져오기
         val BASE_URL = "http://3.35.88.89:8080"
         val id = intent.getStringExtra("id")
         val date = intent.getStringExtra("date")
+
+        dateTextView.text = "$date"
 
         var gson = GsonBuilder()
             .setLenient()

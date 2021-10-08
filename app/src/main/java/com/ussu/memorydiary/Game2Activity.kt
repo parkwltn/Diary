@@ -29,7 +29,7 @@ class Game2Activity : BaseActivity() {
         AnswerEditText = findViewById(R.id.editTextTextAnswer)
 
         //서버에서 질문, 답 가져오기
-        val BASE_URL = "http://192.168.0.104:8080"
+        val BASE_URL = "http://3.35.88.89:8080"
         val id = intent.getStringExtra("id")
         val date = intent.getStringExtra("date")
 
@@ -86,7 +86,7 @@ class Game2Activity : BaseActivity() {
                                             Toast.LENGTH_LONG
                                         ).show()
                                         score = score + 1
-                                        val BASE_URL = "http://192.168.0.104:8080"
+                                        val BASE_URL = "http://3.35.88.89:8080"
 
                                         var gson = GsonBuilder()
                                             .setLenient()

@@ -33,7 +33,7 @@ class GameActivity : BaseActivity() {
         questionTextView = findViewById(R.id.textViewQuestion)
 
         //서버에서 질문, 답 가져오기
-        val BASE_URL = "http://192.168.0.104:8080"
+        val BASE_URL = "http://3.35.88.89:8080"
         val id = intent.getStringExtra("id")
         val date = intent.getStringExtra("date")
 
@@ -77,7 +77,7 @@ class GameActivity : BaseActivity() {
                             if (answer == getAnswer) { //정답
                                 Toast.makeText(this@GameActivity, "정답입니다!", Toast.LENGTH_LONG).show()
                                 score = score + 1
-                                val BASE_URL = "http://192.168.0.104:8080"
+                                val BASE_URL = "http://3.35.88.89:8080"
 
                                 var gson = GsonBuilder()
                                     .setLenient()

@@ -75,7 +75,6 @@ class GameActivity : BaseActivity() {
                         btnAnswer.setOnClickListener {
                             //답 입력받기
                             var answer = AnswerEditText.text.toString()
-                            Toast.makeText(this@GameActivity, "$answer, $getAnswer", Toast.LENGTH_LONG).show()
 
                             //답 비교
                             if (answer == getAnswer) { //정답

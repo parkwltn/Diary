@@ -62,6 +62,14 @@ class Game2Activity : BaseActivity() {
                         btnAnswer.isVisible = false
                         Toast.makeText(this@Game2Activity, "다른 날짜를 선택해주세요.", Toast.LENGTH_LONG)
                             .show()
+                    } else if(score_ox2 == 2) {
+                        btnAnswer.isVisible = false
+                        Toast.makeText(this@Game2Activity, "일기를 확인해주세요.", Toast.LENGTH_LONG)
+                            .show()
+                    } else if(score_ox2 == 3) {
+                        btnAnswer.isVisible = false
+                        Toast.makeText(this@Game2Activity, "우선 일기를 작성해주세요.", Toast.LENGTH_LONG)
+                            .show()
                     } else {
                         if (response.body()!!.answer == "99") {
                             var gameText = response.body()!!.game_text

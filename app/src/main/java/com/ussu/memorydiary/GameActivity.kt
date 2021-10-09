@@ -67,6 +67,10 @@ class GameActivity : BaseActivity() {
                         questionTextView.text = "$question"
                         btnAnswer.isVisible = false
                         Toast.makeText(this@GameActivity, "다른 날짜를 선택해주세요.", Toast.LENGTH_LONG).show()
+                    } else if (score_ox == 2) {
+                        questionTextView.text = "$question"
+                        btnAnswer.isVisible = false
+                        Toast.makeText(this@GameActivity, "우선 일기를 작성해주세요", Toast.LENGTH_LONG).show()
                     } else {
                         //질문 textView에 띄우기
                         questionTextView.text = "$question"

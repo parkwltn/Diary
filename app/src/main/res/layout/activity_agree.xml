@@ -43,13 +43,6 @@
             android:onClick="onCheckboxClicked"
             android:textSize="?attr/mainTextSize"/>
 
-        <CheckBox
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:text="아니오"
-            android:textSize="?attr/mainTextSize"/>
-
 
     </LinearLayout>
 
